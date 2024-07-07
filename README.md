@@ -1,7 +1,10 @@
 # Package Laravel
 
-### Laravel Version 11 
-##### intall laravel
+# Laravel Version 11 
+
+```bash
+composer create-project laravel/laravel example-app
+```
 
 
 ## Instalasi Laravel Livewire
