@@ -1,13 +1,11 @@
 <?php
 
+
+use App\Http\Controllers\ControllerServerSide;
 use App\Http\Controllers\TransaksiController;
-use App\Models\Transaksi_h;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index', [
-        'detailPemesan' => Transaksi_h::with('pemesan')->get(),
-    ]);
-});
+Route::get('/', [ControllerServerSide::class, 'serverSide'])->name('api-server-side');
 
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+Route::get('/detail-pemesan/detail', [TransaksiController::class, 'detailPemesan'])->name('detail-pemesan');

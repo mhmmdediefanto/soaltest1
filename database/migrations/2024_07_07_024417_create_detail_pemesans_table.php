@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_pemesans', function (Blueprint $table) {
             $table->id();
+            $table->string('nomor_transaksi');
             $table->string('nm_barang');
             $table->string('subtotal');
             $table->string('qty');

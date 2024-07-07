@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Barang;
+use App\Models\Counter;
 use App\Models\DetailPemesan;
 use App\Models\Ms_customer;
 use App\Models\Transaksi_d;
 use App\Models\Transaksi_h;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Number;
 use Livewire\Component;
 
 class Transaksi extends Component
@@ -31,7 +33,10 @@ class Transaksi extends Component
         // $this->selectedCustomerId;
         $this->customers = Ms_customer::all(); // Load customers from the database
         $this->barangs = Barang::all();
+
+
         $this->generateTransactionNumber();
+
         $this->barangCart();
     }
 
@@ -55,6 +60,7 @@ class Transaksi extends Component
         $validatedData['qty'] = $this->qty;
 
         Transaksi_d::create($validatedData);
+        // $this->generateTransactionNumber();
 
         // Memanggil kembali fungsi untuk memuat ulang data
         $this->barangCart();
@@ -84,8 +90,10 @@ class Transaksi extends Component
 
         // dd($barangsCart);
 
+        // simpan kedetail pemesan
         foreach ($barangsCart as $item) {
             DetailPemesan::create([
+                'nomor_transaksi' => $this->transactionNumber,
                 'nm_barang' => $item->barangs->nm_barang,
                 'subtotal' => $item->subtotal,
                 'qty' => $item->qty,
@@ -95,6 +103,7 @@ class Transaksi extends Component
 
         // Hapus semua data di Transaksi_d
         Transaksi_d::truncate();
+        // $this->generateTransactionNumber();
         return redirect('/');
         // dd($validatedData);
     }
@@ -126,7 +135,7 @@ class Transaksi extends Component
 
         // dd($counterRecord, $counter);
 
-        $this->transactionNumber = sprintf('SO/%s-%s/%04d', $year, $month, $counter);
+        return $this->transactionNumber = sprintf('SO/%s-%s/%04d', $year, $month, $counter);
     }
 
     public function updatedSelectedCustomerId()
@@ -147,7 +156,8 @@ class Transaksi extends Component
     {
 
         return view('livewire.transaksi', [
-            'selectedCustomerId' => $this->selectedCustomerId
+            'selectedCustomerId' => $this->selectedCustomerId,
+            'transactionNumber' => $this->transactionNumber,
         ]);
     }
 }

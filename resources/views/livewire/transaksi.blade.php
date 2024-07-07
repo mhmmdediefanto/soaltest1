@@ -5,8 +5,8 @@
     <div class="w-full  border-b-2 border-slate-700 pb-8">
         <div class="mt-3">
             <label for="no_transaksi" class="font-bold text-slate-600 mb-2">Nomor Transaksi</label>
-            <input type="text" name="nomor_transaksi" class="block font-bold" id="no_transaksi"
-                value="{{ $transactionNumber }}">
+            <input type="text" name="nomor_transaksi" class="block font-bold hover:cursor-not-allowed" id="no_transaksi"
+                value="{{ $transactionNumber }}" readonly>
         </div>
         <div class="mt-3">
             <label for="tgl_transaksi" class="font-bold text-slate-600 mb-3 block">Tanggal Transaksi</label>
