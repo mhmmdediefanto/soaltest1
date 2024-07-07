@@ -12,8 +12,9 @@ class ControllerServerSide extends Controller
     public function serverSide(Request $request)
     {
 
+        $data = Transaksi_h::with('pemesan')->latest()->get();
+        $subTotal = $data->sum('total_harga');
         if ($request->ajax()) {
-            $data = Transaksi_h::with('pemesan')->latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('nomor_transaksi', function ($data) {
@@ -23,7 +24,7 @@ class ControllerServerSide extends Controller
                     return $data->pemesan->nama;
                 })
                 ->addColumn('total_harga', function ($data) {
-                    return $data->total_harga;
+                    return 'Rp.' . number_format($data->total_harga, 2, ',', '.');
                 })
                 ->addColumn('action', function ($data) {
 
@@ -35,7 +36,7 @@ class ControllerServerSide extends Controller
                 ->make(true);
         }
         return view('index', [
-            'detailPemesan' => '',
+            'subTotal' => $subTotal,
         ]);
     }
 }

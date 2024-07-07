@@ -10,9 +10,11 @@
             <div>
                 <form id="filter-form">
                     @csrf
-                    <input type="date" name="tanggal_awal" id="tanggal_awal" class="w-[220px] py-2 px-5 border border-gray-300 rounded-lg" placeholder="Tanggal Awal">
+                    <input type="date" name="tanggal_awal" id="tanggal_awal"
+                        class="w-[220px] py-2 px-5 border border-gray-300 rounded-lg" placeholder="Tanggal Awal">
                     <span class="font-bold me-2 ml-2">sd</span>
-                    <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="py-2 px-5 border border-gray-300 rounded-lg w-[220px]" placeholder="Tanggal Akhir">
+                    <input type="date" name="tanggal_akhir" id="tanggal_akhir"
+                        class="py-2 px-5 border border-gray-300 rounded-lg w-[220px]" placeholder="Tanggal Akhir">
                     <button id="filter-btn" class="py-2 bg-blue-600 px-3 rounded-lg ml-3" type="button">
                         <i class="bi bi-hourglass-split text-xl text-white"></i> Filter
                     </button>
@@ -95,6 +97,9 @@
 
                 </tbody>
             </table>
+            <div class="font-bold text-lg text-left">
+                Subtotal : Rp.{{ number_format($subTotal,2,",",".") }}
+            </div>
         </div>
     </div>
 
