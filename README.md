@@ -11,5 +11,13 @@
 Jalankan perintah berikut di terminal:
 
 ```bash
-composer require livewire/livewire
+composer require livewire/livewire 
+```
 
+
+## Instalasi Laravel datables yajra
+
+### Langkah 2: Install Laravel datables yajra Menggunakan Composer
+```bash
+composer require yajra/laravel-datatables-oracle:^11.0
+```
